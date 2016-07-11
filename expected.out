@@ -1,0 +1,22 @@
+-- Setup
+CREATE TABLE employees (name varchar(30));
+CREATE TABLE
+INSERT INTO employees VALUES ('Eric'),('kevin'),('Bob');
+INSERT 0 3
+-- Should fail
+DELETE FROM employees;
+ERROR:  DELETE requires a WHERE clause
+UPDATE employees SET name='kevin';
+ERROR:  UPDATE requires a WHERE clause
+-- Should pass
+DELETE FROM employees WHERE name='Bob';
+DELETE 1
+UPDATE employees SET name='Kevin' WHERE name='kevin';
+UPDATE 1
+SELECT * FROM employees;
+ name  
+-------
+ Eric
+ Kevin
+(2 rows)
+
