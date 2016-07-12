@@ -1,8 +1,10 @@
 Require SQL Where Clause
 ========================
 
-`safeupdate` is a simple extension to PostgreSQL that requires criteria for
-`UPDATE` and `DELETE`.
+`safeupdate` is a simple extension to PostgreSQL that raises an error if
+`UPDATE` and `DELETE` are executed without specifying conditions.  This
+extension was initially designed to protect data from accidental obliteration of
+data that is writable by [PostgREST][PostgREST].
 
 Installation
 ------------
@@ -14,7 +16,7 @@ Activate per-session by running
 
     load 'safeupdate';
 
-Make this manditory for all databases and connections by adding the following to
+Make this mandatory for all databases and connections by adding the following to
 `postgresql.conf`
 
     shared_preload_libraries=safeupdate
@@ -22,9 +24,21 @@ Make this manditory for all databases and connections by adding the following to
 Examples
 --------
 
+Try to update records without `WHERE` clause
+
+    => UPDATE FROM rack SET fan_spee=70;
+    ERROR:  UPDATE requires a WHERE clause
+
+Set a column value for a range of records
+
+    => UPDATE rack SET fan_speed=90 WHERE fan_speed=70;
+    UPDATE 20
+
 Set a column value for all the records in a table
 
-    => UPDATE fan SET speed=90 WHERE 1=1;
+    => UPDATE rack SET fan_speed=90 WHERE 1=1;
+    UPDATE 300
+
 
 Requirements
 ------------
@@ -45,4 +59,4 @@ detailed information on the license used for compatibility libraries.
 
 [NEWS]: http://www.bitbucket.org/eradman/pg-safeupdate/src/default/NEWS
 [LICENSE]: http://www.bitbucket.org/eradman/pg-safeupdate/src/default/LICENSE
-[pg_tmp]: http://ephemeralpg.org
+[PostgREST]: http://postgrest.com
