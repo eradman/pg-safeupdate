@@ -17,8 +17,9 @@ Activate per-session by running
     load 'safeupdate';
 
 Make this mandatory for all databases and connections by adding the following to
-`postgresql.conf`
+`postgresql.conf`:
 
+    :::ini
     shared_preload_libraries=safeupdate
 
 Examples
@@ -26,19 +27,19 @@ Examples
 
 Try to update records without `WHERE` clause
 
-    => UPDATE FROM rack SET fan_spee=70;
-    ERROR:  UPDATE requires a WHERE clause
+    :::sql
+    UPDATE FROM rack SET fan_spee=70;
+    -- ERROR:  UPDATE requires a WHERE clause
 
 Set a column value for a range of records
 
-    => UPDATE rack SET fan_speed=90 WHERE fan_speed=70;
-    UPDATE 20
+    :::sql
+    UPDATE rack SET fan_speed=90 WHERE fan_speed=70;
 
 Set a column value for all the records in a table
 
-    => UPDATE rack SET fan_speed=90 WHERE 1=1;
-    UPDATE 300
-
+    :::sql
+    UPDATE rack SET fan_speed=90 WHERE 1=1;
 
 Requirements
 ------------
