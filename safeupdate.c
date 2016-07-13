@@ -38,11 +38,11 @@ explain_ExecutorStart(QueryDesc *queryDesc, int eflags)
 	switch (queryDesc->operation)
 	{
 	case CMD_DELETE:
-		if (strcasestr(queryDesc->sourceText, " WHERE ") == 0)
+		if (strcasestr(queryDesc->sourceText, "WHERE ") == NULL)
 			elog(ERROR, "DELETE requires a WHERE clause");
 		break;
 	case CMD_UPDATE:
-		if (strcasestr(queryDesc->sourceText, " WHERE ") == 0)
+		if (strcasestr(queryDesc->sourceText, "WHERE ") == NULL)
 			elog(ERROR, "UPDATE requires a WHERE clause");
 		break;
 	default:
