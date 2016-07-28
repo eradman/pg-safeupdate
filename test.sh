@@ -12,7 +12,8 @@ DELETE FROM employees;
 UPDATE employees SET name='kevin';
 -- Should pass
 DELETE FROM employees WHERE name='Bob';
-UPDATE employees SET name='Kevin' WHERE name='kevin';
+UPDATE employees SET name='Kevin' WHERE
+  name='kevin';
 UPDATE employees SET name='Kevin'
 WHERE name='kevin';
 SELECT * FROM employees;

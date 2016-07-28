@@ -11,7 +11,8 @@ ERROR:  UPDATE requires a WHERE clause
 -- Should pass
 DELETE FROM employees WHERE name='Bob';
 DELETE 1
-UPDATE employees SET name='Kevin' WHERE name='kevin';
+UPDATE employees SET name='Kevin' WHERE
+  name='kevin';
 UPDATE 1
 UPDATE employees SET name='Kevin'
 WHERE name='kevin';
