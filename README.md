@@ -9,8 +9,14 @@ data that is writable by [PostgREST][PostgREST].
 Installation
 ------------
 
+Build from source using
+
     gmake
     gmake install
+
+Or from [PGXN][PGXN]
+
+    pgxn install safeupate
 
 Activate per-session by running
 
@@ -61,3 +67,4 @@ detailed information on the license used for compatibility libraries.
 [NEWS]: http://www.bitbucket.org/eradman/pg-safeupdate/src/default/NEWS
 [LICENSE]: http://www.bitbucket.org/eradman/pg-safeupdate/src/default/LICENSE
 [PostgREST]: http://postgrest.com
+[PGXN]: http://pgxn.org
