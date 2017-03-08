@@ -4,7 +4,7 @@ Require SQL Where Clause
 `safeupdate` is a simple extension to PostgreSQL that raises an error if
 `UPDATE` and `DELETE` are executed without specifying conditions.  This
 extension was initially designed to protect data from accidental obliteration of
-data that is writable by [PostgREST][PostgREST].
+data that is writable by [PostgREST].
 
 Installation
 ------------
@@ -14,7 +14,7 @@ Build from source using
     gmake
     gmake install
 
-Or from [PGXN][PGXN]
+Or from [PGXN]
 
     pgxn install safeupate
 
@@ -47,22 +47,17 @@ Set a column value for all the records in a table
     :::sql
     UPDATE rack SET fan_speed=90 WHERE 1=1;
 
-Requirements
-------------
-
-* PostgreSQL 8.4+
-
 News
 ----
 
 A release history as well as features in the upcoming release are covered in the
-[NEWS][NEWS] file.
+[NEWS] file.
 
 License
 -------
 
-Source is under and ISC-style license. See the [LICENSE][LICENSE] file for more
-detailed information on the license used for compatibility libraries.
+Source is under and ISC-style license. See the [LICENSE] file for more detailed
+information on the license used for compatibility libraries.
 
 [NEWS]: http://www.bitbucket.org/eradman/pg-safeupdate/src/default/NEWS
 [LICENSE]: http://www.bitbucket.org/eradman/pg-safeupdate/src/default/LICENSE
