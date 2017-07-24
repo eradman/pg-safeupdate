@@ -12,7 +12,7 @@ def try(descr)
   yield
   delta = "%.3f" % (Time.now - start)
   # highlight slow tests
-  delta = "\e[7m#{delta}\e[27m" if (Time.now - start) > 0.1
+  delta = "\e[7m#{delta}\e[27m" if (Time.now - start) > 0.03
   puts "#{delta}: #{descr}"
 end
 
@@ -31,8 +31,8 @@ q = %{
   INSERT INTO employees VALUES ('Eric'),('kevin'),('Bob');
 }
 out, err, status = Open3.capture3(psql, :stdin_data=>q)
-eq err.empty?, true
-eq out.empty?, true
+eq err, ""
+eq out, ""
 eq status.success?, true
 
 # Tests
@@ -44,7 +44,7 @@ try "Block unqualified DELETE" do
   out, err, status = Open3.capture3(psql, :stdin_data=>q)
   eq err, "ERROR:  DELETE requires a WHERE clause\n"
   eq status.success?, true
-  eq out.empty?, true
+  eq out, ""
 end
 
 try "Block unqualified UPDATE" do
@@ -53,8 +53,8 @@ try "Block unqualified UPDATE" do
   }
   out, err, status = Open3.capture3(psql, :stdin_data=>q)
   eq err, "ERROR:  UPDATE requires a WHERE clause\n"
+  eq out, ""
   eq status.success?, true
-  eq out.empty?, true
 end
 
 try "Allow qualified DELETE" do
@@ -65,8 +65,8 @@ try "Allow qualified DELETE" do
   }
   out, err, status = Open3.capture3(psql, :stdin_data=>q)
   eq err.empty?, true
-  eq status.success?, true
   eq out, "Bob\n"
+  eq status.success?, true
 end
 
 try "Allow qualified UPDATE" do
@@ -78,9 +78,42 @@ try "Allow qualified UPDATE" do
     ROLLBACK;
   }
   out, err, status = Open3.capture3(psql, :stdin_data=>q)
-  eq err.empty?, true
-  eq status.success?, true
+  eq err, ""
   eq out, "Kevin\n"
+  eq status.success?, true
+end
+
+try "Block modifying CTE with unqualified UPDATE" do
+  q = %{
+    WITH updates AS (
+      UPDATE employees SET name='Kevin'
+      RETURNING name
+    )
+    SELECT *
+    FROM updates;
+  }
+  out, err, status = Open3.capture3(psql, :stdin_data=>q)
+  eq err, "ERROR:  UPDATE requires a WHERE clause\n"
+  eq out, ""
+  eq status.success?, true
+end
+
+try "Allow modifying CTE with qualified UPDATE" do
+  q = %{
+    BEGIN;
+    WITH updates AS (
+      UPDATE employees SET name='Kevin'
+      WHERE name='kevin'
+      RETURNING name
+    )
+    SELECT *
+    FROM updates;
+    ROLLBACK;
+  }
+  out, err, status = Open3.capture3(psql, :stdin_data=>q)
+  eq err, ""
+  eq out, "Kevin\n"
+  eq status.success?, true
 end
 
 puts "\n#{$tests} tests PASSED"

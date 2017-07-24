@@ -1,6 +1,7 @@
 #include "postgres.h"
 #include "fmgr.h"
 #include "parser/analyze.h"
+#include "nodes/nodeFuncs.h"
 
 PG_MODULE_MAGIC;
 
@@ -11,6 +12,18 @@ static post_parse_analyze_hook_type prev_post_parse_analyze_hook = NULL;
 static void
 delete_needs_where_check(ParseState *pstate, Query *query)
 {
+	ListCell *l;
+	Query *ctequery;
+
+	if (query->hasModifyingCTE) {
+		foreach(l, query->cteList)
+		{
+			CommonTableExpr *cte = (CommonTableExpr *) lfirst(l);
+			ctequery = castNode(Query, cte->ctequery);
+			delete_needs_where_check(pstate, ctequery);
+		}
+	}
+
 	switch (query->commandType)
 	{
 	case CMD_DELETE:

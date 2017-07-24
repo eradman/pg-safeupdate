@@ -1,8 +1,10 @@
-RELEASE = 1.0
+RELEASE = 1.1
 MODULES = safeupdate
 PG_CONFIG = pg_config
 PGXS := $(shell $(PG_CONFIG) --pgxs)
 include $(PGXS)
+
+all: versioncheck
 
 test: ${MODULES}.so
 	@ruby ./test.rb

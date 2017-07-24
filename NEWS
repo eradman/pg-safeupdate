@@ -1,12 +1,13 @@
-= Next Release: 1.1
-
- - Use jointree instead of matching on substrings (based on delete_needs_where.c
-   by Robert Haas)
-
 = Release History:
+
+== 1.1: July 24, 2017
+
+ - Evaluate common table expressions (CTE) that attempt to modify data
 
 == 1.0: July 28, 2016
 
  - Initial concept https://bitbucket.org/eradman/safeupdate
  - safeupdate, a extension to require a WHERE clause for UPDATE and DELETE
+ - Use jointree instead of matching on substrings (based on delete_needs_where.c
+   by Robert Haas)
 

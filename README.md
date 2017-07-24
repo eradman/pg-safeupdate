@@ -37,6 +37,15 @@ Try to update records without `WHERE` clause
     UPDATE FROM rack SET fan_spee=70;
     -- ERROR:  UPDATE requires a WHERE clause
 
+Select results from a CTE that attempts to modify data:
+
+    :::sql
+    WITH updates AS (
+      UPDATE FROM rack SET fan_spee=70
+    )
+    SELECT * FROM updates;
+    -- ERROR:  UPDATE requires a WHERE clause
+
 Set a column value for a range of records
 
     :::sql
