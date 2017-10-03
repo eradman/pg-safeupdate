@@ -13,14 +13,12 @@ static void
 delete_needs_where_check(ParseState *pstate, Query *query)
 {
 	ListCell *l;
-	Query *ctequery;
 
 	if (query->hasModifyingCTE) {
 		foreach(l, query->cteList)
 		{
 			CommonTableExpr *cte = (CommonTableExpr *) lfirst(l);
-			ctequery = castNode(Query, cte->ctequery);
-			delete_needs_where_check(pstate, ctequery);
+			delete_needs_where_check(pstate, (Query *) cte->ctequery);
 		}
 	}
 

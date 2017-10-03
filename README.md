@@ -56,6 +56,11 @@ Set a column value for all the records in a table
     :::sql
     UPDATE rack SET fan_speed=90 WHERE 1=1;
 
+Requirements
+------------
+
+* PostgreSQL 9.5
+
 News
 ----
 
