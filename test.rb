@@ -116,5 +116,20 @@ try "Allow modifying CTE with qualified UPDATE" do
   eq status.success?, true
 end
 
+try "Disable safeupdate" do
+  q = %{
+    SHOW safeupdate.enabled;
+    SET safeupdate.enabled=0;
+    BEGIN;
+    DELETE FROM employees;
+    ROLLBACK;
+    SET safeupdate.enabled=1;
+  }
+  out, err, status = Open3.capture3(psql, :stdin_data=>q)
+  eq err, ""
+  eq out, "on\n"
+  eq status.success?, true
+end
+
 puts "\n#{$tests} tests PASSED"
 
