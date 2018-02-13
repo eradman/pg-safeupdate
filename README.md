@@ -34,14 +34,15 @@ Examples
 Try to update records without `WHERE` clause
 
     :::sql
-    UPDATE FROM rack SET fan_spee=70;
+    UPDATE FROM rack SET fan_speed=70;
     -- ERROR:  UPDATE requires a WHERE clause
 
 Select results from a CTE that attempts to modify data:
 
     :::sql
     WITH updates AS (
-      UPDATE FROM rack SET fan_spee=70
+      UPDATE rack SET fan_speed=70
+      RETURNING *
     )
     SELECT * FROM updates;
     -- ERROR:  UPDATE requires a WHERE clause
