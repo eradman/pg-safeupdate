@@ -57,6 +57,15 @@ Set a column value for all the records in a table
     :::sql
     UPDATE rack SET fan_speed=90 WHERE 1=1;
 
+Options
+-------
+
+Once loaded this extension can be administratively disabled by setting
+
+    :::sql
+    SET safeupdate.enabled=0;
+
+
 Requirements
 ------------
 
