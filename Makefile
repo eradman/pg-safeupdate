@@ -1,4 +1,4 @@
-RELEASE = 1.1
+RELEASE = 1.2
 MODULES = safeupdate
 PG_CONFIG = pg_config
 PGXS := $(shell $(PG_CONFIG) --pgxs)
