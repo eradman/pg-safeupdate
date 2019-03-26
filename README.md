@@ -60,16 +60,16 @@ Set a column value for all the records in a table
 Options
 -------
 
-Once loaded this extension can be administratively disabled by setting
+Once loaded this extension can be administratively disabled per sesison by
+setting
 
     :::sql
     SET safeupdate.enabled=0;
 
+or per database using
 
-Requirements
-------------
-
-* PostgreSQL 9.5
+    :::sql
+    ALTER DATABASE mydb SET safeupdate.enabled=off;
 
 News
 ----
