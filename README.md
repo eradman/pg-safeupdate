@@ -83,7 +83,7 @@ License
 Source is under and ISC-style license. See the [LICENSE] file for more detailed
 information on the license used for compatibility libraries.
 
-[NEWS]: http://www.bitbucket.org/eradman/pg-safeupdate/src/default/NEWS
-[LICENSE]: http://www.bitbucket.org/eradman/pg-safeupdate/src/default/LICENSE
+[NEWS]:  https://raw.githubusercontent.com/eradman/pg-safeupdate/master/NEWS
+[LICENSE]:  https://raw.githubusercontent.com/eradman/pg-safeupdate/master/LICENSE
 [PostgREST]: http://postgrest.com
 [PGXN]: http://pgxn.org

@@ -1,8 +1,13 @@
-= Next Release: 1.2
+= Next Release: 1.3
 
- - GUC for disabling the extension using 'SET safeupdate.enable=0'
+ - Move hosting from bitbucket.org to github.com
+ - Rename tag names from pg-safeupdate-X.Y to X.Y
 
 = Release History:
+
+== 1.2: June 11, 2019
+
+ - GUC for disabling the extension using 'SET safeupdate.enable=0'
 
 == 1.1: July 24, 2017
 
