@@ -77,13 +77,6 @@ News
 A release history as well as features in the upcoming release are covered in the
 [NEWS] file.
 
-License
--------
-
-Source is under and ISC-style license. See the [LICENSE] file for more detailed
-information on the license used for compatibility libraries.
-
 [NEWS]:  https://raw.githubusercontent.com/eradman/pg-safeupdate/master/NEWS
-[LICENSE]:  https://raw.githubusercontent.com/eradman/pg-safeupdate/master/LICENSE
 [PostgREST]: http://postgrest.com
 [PGXN]: http://pgxn.org
