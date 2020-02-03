@@ -25,8 +25,11 @@ Activate per-session by running
 Make this mandatory for all databases and connections by adding the following to
 `postgresql.conf`:
 
-    :::ini
     shared_preload_libraries=safeupdate
+
+Or enable for a specific database using
+
+    ALTER DATABASE mydb SET session_preload_libraries = 'safeupdate';
 
 Examples
 --------
