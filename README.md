@@ -72,7 +72,7 @@ Once loaded this extension can be administratively disabled by setting
 Requirements
 ------------
 
-* PostgreSQL 9.5
+* PostgreSQL 9.6
 
 News
 ----

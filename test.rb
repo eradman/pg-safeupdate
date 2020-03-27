@@ -24,7 +24,7 @@ end
 
 # Setup
 $url = `pg_tmp -o "-c shared_preload_libraries=#{Dir.pwd}/safeupdate"`
-psql = "psql -At -q #{$url}"
+psql = "psql --no-psqlrc -At -q #{$url}"
 puts "using #{$url}"
 q = %{
   CREATE TABLE employees (name varchar(30));

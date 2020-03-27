@@ -15,6 +15,7 @@ static void
 delete_needs_where_check(ParseState *pstate, Query *query)
 {
 	ListCell *l;
+	Query *ctequery;
 
 	if (!safeupdate_enabled)
 		return;
@@ -23,7 +24,8 @@ delete_needs_where_check(ParseState *pstate, Query *query)
 		foreach(l, query->cteList)
 		{
 			CommonTableExpr *cte = (CommonTableExpr *) lfirst(l);
-			delete_needs_where_check(pstate, (Query *) cte->ctequery);
+			ctequery = castNode(Query, cte->ctequery);
+			delete_needs_where_check(pstate, ctequery);
 		}
 	}
 
