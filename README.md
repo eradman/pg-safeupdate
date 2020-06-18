@@ -16,7 +16,7 @@ Build from source using
 
 Or from [PGXN]
 
-    pgxn install safeupate
+    pgxn install safeupdate
 
 Activate per-session by running
 
