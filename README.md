@@ -36,13 +36,11 @@ Examples
 
 Try to update records without `WHERE` clause
 
-    :::sql
     UPDATE FROM rack SET fan_speed=70;
     -- ERROR:  UPDATE requires a WHERE clause
 
 Select results from a CTE that attempts to modify data:
 
-    :::sql
     WITH updates AS (
       UPDATE rack SET fan_speed=70
       RETURNING *
@@ -52,12 +50,10 @@ Select results from a CTE that attempts to modify data:
 
 Set a column value for a range of records
 
-    :::sql
     UPDATE rack SET fan_speed=90 WHERE fan_speed=70;
 
 Set a column value for all the records in a table
 
-    :::sql
     UPDATE rack SET fan_speed=90 WHERE 1=1;
 
 Options
@@ -65,9 +61,7 @@ Options
 
 Once loaded this extension can be administratively disabled by setting
 
-    :::sql
     SET safeupdate.enabled=0;
-
 
 Requirements
 ------------
@@ -78,8 +72,7 @@ News
 ----
 
 A release history as well as features in the upcoming release are covered in the
-[NEWS] file.
+[NEWS](NEWS) file.
 
-[NEWS]:  https://raw.githubusercontent.com/eradman/pg-safeupdate/master/NEWS
 [PostgREST]: http://postgrest.com
 [PGXN]: http://pgxn.org
