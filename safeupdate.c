@@ -38,7 +38,7 @@ delete_needs_where_check(ParseState *pstate, Query *query)
 		if (query->jointree->quals == NULL)
 			ereport(ERROR,
 			    (errcode(ERRCODE_CARDINALITY_VIOLATION),
-			     errmsg("DELETE requires a WHERE clause"), NULL));
+			     errmsg("DELETE requires a WHERE clause")));
 	}
 		break;
 	case CMD_UPDATE:
@@ -46,7 +46,7 @@ delete_needs_where_check(ParseState *pstate, Query *query)
 		if (query->jointree->quals == NULL)
 			ereport(ERROR,
 			    (errcode(ERRCODE_CARDINALITY_VIOLATION),
-			     errmsg("UPDATE requires a WHERE clause"), NULL));
+			     errmsg("UPDATE requires a WHERE clause")));
 	default:
 		break;
 	}

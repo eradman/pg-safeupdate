@@ -1,6 +1,7 @@
 = Next Release: 1.4
 
  - Use relative link in README
+ - Correct invocation of 'errmsg()'
 
 = Release History:
 
