@@ -63,11 +63,6 @@ Once loaded this extension can be administratively disabled by setting
 
     SET safeupdate.enabled=0;
 
-Requirements
-------------
-
-* PostgreSQL 9.6
-
 News
 ----
 

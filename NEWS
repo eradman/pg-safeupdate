@@ -1,9 +1,9 @@
-= Next Release: 1.4
+= Release History
+
+== 1.4: June 3, 2021
 
  - Correct invocation of 'errmsg()'
  - Adapt build for PostgreSQL 14
-
-= Release History:
 
 == 1.3:  September 25, 2019
 
