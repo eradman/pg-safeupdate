@@ -29,7 +29,7 @@ psql = "psql --no-psqlrc -At -q #{$url}"
 puts "using #{$url}"
 q = %{
     CREATE TABLE employees (name varchar(30));
-    INSERT INTO employees VALUES ('Eric'),('kevin'),('Bob');
+    INSERT INTO employees VALUES ('Eric'),('kevin'),('Robert');
 }
 out, err, status = Open3.capture3(psql, :stdin_data=>q)
 eq err, ""
@@ -61,12 +61,12 @@ end
 try "Allow qualified DELETE" do
     q = %{
         BEGIN;
-        DELETE FROM employees WHERE name='Bob' RETURNING name;
+        DELETE FROM employees WHERE name='Robert' RETURNING name;
         ROLLBACK;
     }
     out, err, status = Open3.capture3(psql, :stdin_data=>q)
     eq err.empty?, true
-    eq out, "Bob\n"
+    eq out, "Robert\n"
     eq status.success?, true
 end
 

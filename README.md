@@ -14,10 +14,6 @@ Build from source using
     gmake
     gmake install
 
-Or from [PGXN]
-
-    pgxn install safeupdate
-
 Activate per-session by running
 
     load 'safeupdate';
@@ -70,4 +66,3 @@ A release history as well as features in the upcoming release are covered in the
 [NEWS](NEWS) file.
 
 [PostgREST]: http://postgrest.com
-[PGXN]: http://pgxn.org
