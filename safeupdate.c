@@ -33,14 +33,11 @@ delete_needs_where_check(ParseState *pstate, Query *query, JumbleState *jstate)
 	switch (query->commandType)
 	{
 	case CMD_DELETE:
-	if (query->commandType == CMD_DELETE)
-	{
 		Assert(query->jointree != NULL);
 		if (query->jointree->quals == NULL)
 			ereport(ERROR,
 			    (errcode(ERRCODE_CARDINALITY_VIOLATION),
 			     errmsg("DELETE requires a WHERE clause")));
-	}
 		break;
 	case CMD_UPDATE:
 		Assert(query->jointree != NULL);
@@ -76,14 +73,11 @@ delete_needs_where_check(ParseState *pstate, Query *query)
 	switch (query->commandType)
 	{
 	case CMD_DELETE:
-	if (query->commandType == CMD_DELETE)
-	{
 		Assert(query->jointree != NULL);
 		if (query->jointree->quals == NULL)
 			ereport(ERROR,
 			    (errcode(ERRCODE_CARDINALITY_VIOLATION),
 			     errmsg("DELETE requires a WHERE clause")));
-	}
 		break;
 	case CMD_UPDATE:
 		Assert(query->jointree != NULL);
