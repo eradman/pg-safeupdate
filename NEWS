@@ -1,6 +1,6 @@
 = Next Release: 1.5
 
- -
+ - Require PostgreSQL >= 14
 
 = Release History
 
