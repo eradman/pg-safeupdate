@@ -27,6 +27,13 @@ Or enable for a specific database using
 
     ALTER DATABASE mydb SET session_preload_libraries = 'safeupdate';
 
+Options
+-------
+
+Once loaded this extension can be administratively disabled by setting
+
+    SET safeupdate.enabled=0;
+
 Examples
 --------
 
@@ -52,17 +59,11 @@ Set a column value for all the records in a table
 
     UPDATE rack SET fan_speed=90 WHERE 1=1;
 
-Options
--------
-
-Once loaded this extension can be administratively disabled by setting
-
-    SET safeupdate.enabled=0;
-
 News
 ----
 
-A release history as well as features in the upcoming release are covered in the
-[NEWS](NEWS) file.
+Notification of new releases are provided by an
+[Atom feed](https://github.com/eradman/pg-safeupdate/releases.atom),
+and release history is covered in the [NEWS](NEWS) file.
 
 [PostgREST]: http://postgrest.com

@@ -1,8 +1,9 @@
-= Next Release: 1.5
+= Release History
+
+== 1.5: November 14, 2023
 
  - Require PostgreSQL >= 14
-
-= Release History
+ - Use ${RUBY} instead of `ruby' for tests
 
 == 1.4: June 3, 2021
 

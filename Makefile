@@ -5,14 +5,8 @@ PGXS := $(shell $(PG_CONFIG) --pgxs)
 RUBY = ruby
 include $(PGXS)
 
-all: versioncheck
-
 test: ${MODULES}.so
 	@${RUBY} ./test.rb
 
 distclean:
 	rm -f trace.out
-
-versioncheck:
-	@head -n3 NEWS | egrep -q "^= Next Release: ${RELEASE}|^== ${RELEASE}: "
-
