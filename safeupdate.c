@@ -7,8 +7,7 @@
 PG_MODULE_MAGIC;
 
 void _PG_init(void);
-bool safeupdate_enabled;
-
+static bool safeupdate_enabled;
 static post_parse_analyze_hook_type prev_post_parse_analyze_hook = NULL;
 
 static void
