@@ -1,8 +1,9 @@
 #include "postgres.h"
+
 #include "fmgr.h"
-#include "utils/guc.h"
-#include "parser/analyze.h"
 #include "nodes/nodeFuncs.h"
+#include "parser/analyze.h"
+#include "utils/guc.h"
 
 PG_MODULE_MAGIC;
 
