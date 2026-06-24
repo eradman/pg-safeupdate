@@ -24,10 +24,11 @@ def eq(result, expected)
 end
 
 # Setup
-@url = `pg_tmp -o "-c shared_preload_libraries=#{Dir.pwd}/safeupdate"`
+@url = `pg_tmp -o "-c shared_preload_libraries=pg_stat_statements,#{Dir.pwd}/safeupdate"`
 psql = "psql --no-psqlrc -At -q #{@url}"
 puts "using #{@url}"
 q = %{
+    CREATE EXTENSION pg_stat_statements;
     CREATE TABLE employees (name varchar(30));
     INSERT INTO employees VALUES ('Eric'),('kevin'),('Robert');
 }
@@ -129,6 +130,30 @@ try 'Disable safeupdate' do
   out, err, status = Open3.capture3(psql, :stdin_data => q)
   eq err, ''
   eq out, "on\n"
+  eq status.success?, true
+end
+
+try 'Call previous hook when disabled' do
+  # Even when disabled, safeupdate must call the previous
+  # post_parse_analyze_hook. Witness: pg_stat_statements (loaded first)
+  # normalizes constants in that hook -- if the chain is dropped while
+  # disabled, the statement is recorded un-normalized (no '$n' params).
+  q = %(
+        SELECT 1 FROM pg_stat_statements_reset() WHERE false;
+        SET safeupdate.enabled=0;
+        SELECT 1 AS safeupdate_chain_probe WHERE false;
+        SET safeupdate.enabled=1;
+        SELECT CASE
+                 WHEN count(*) = 0 THEN 'no pg_stat_statements entry'
+                 WHEN bool_or(query LIKE '%$%') THEN 'ok'
+                 ELSE 'un-normalized: previous hook was not called'
+               END
+        FROM pg_stat_statements
+        WHERE query LIKE '%safeupdate_chain_probe%';
+    )
+  out, err, status = Open3.capture3(psql, :stdin_data => q)
+  eq err, ''
+  eq out, "ok\n"
   eq status.success?, true
 end
 
