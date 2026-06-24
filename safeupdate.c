@@ -1,6 +1,7 @@
 #include "postgres.h"
 
 #include "fmgr.h"
+#include "miscadmin.h"
 #include "nodes/nodeFuncs.h"
 #include "parser/analyze.h"
 #include "utils/guc.h"
@@ -19,6 +20,9 @@ delete_needs_where_check(ParseState *pstate, Query *query, JumbleState *jstate)
 
 	if (prev_post_parse_analyze_hook != NULL)
 		(*prev_post_parse_analyze_hook)(pstate, query, jstate);
+
+	if (IsBinaryUpgrade)
+		return;
 
 	if (!safeupdate_enabled)
 		return;
