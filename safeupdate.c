@@ -17,6 +17,9 @@ delete_needs_where_check(ParseState *pstate, Query *query, JumbleState *jstate)
 	ListCell *l;
 	Query *ctequery;
 
+	if (prev_post_parse_analyze_hook != NULL)
+		(*prev_post_parse_analyze_hook)(pstate, query, jstate);
+
 	if (!safeupdate_enabled)
 		return;
 
@@ -48,8 +51,6 @@ delete_needs_where_check(ParseState *pstate, Query *query, JumbleState *jstate)
 		default:
 			break;
 	}
-	if (prev_post_parse_analyze_hook != NULL)
-		(*prev_post_parse_analyze_hook)(pstate, query, jstate);
 }
 
 void
