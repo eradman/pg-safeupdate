@@ -4,7 +4,7 @@ RELEASE = 1.5
 MODULES = safeupdate
 PG_CONFIG = pg_config
 PGXS := $(shell $(PG_CONFIG) --pgxs)
-RUBY = ruby
+RUBY ?= ruby
 include $(PGXS)
 
 test: ${MODULES}.so
