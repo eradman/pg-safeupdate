@@ -1,6 +1,6 @@
 RUBOCOP ?= rubocop
 CLANG_FORMAT ?= clang-format
-RELEASE = 1.5
+RELEASE = 1.6
 MODULES = safeupdate
 PG_CONFIG = pg_config
 PGXS := $(shell $(PG_CONFIG) --pgxs)
