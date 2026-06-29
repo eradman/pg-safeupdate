@@ -10,6 +10,7 @@ IndentCaseLabels: true
 IndentWidth: 4
 SpaceAfterCStyleCast: true
 SpaceAfterTemplateKeyword: false
+ColumnLimit: 100
 TabWidth: 4
 UseTab: Always
 ...
