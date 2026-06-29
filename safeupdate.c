@@ -13,7 +13,11 @@ static bool safeupdate_enabled;
 static post_parse_analyze_hook_type prev_post_parse_analyze_hook = NULL;
 
 static void
+#if PG_VERSION_NUM >= 190000
+delete_needs_where_check(ParseState *pstate, Query *query, const JumbleState *jstate)
+#else
 delete_needs_where_check(ParseState *pstate, Query *query, JumbleState *jstate)
+#endif
 {
 	ListCell *l;
 	Query *ctequery;
@@ -52,6 +56,7 @@ delete_needs_where_check(ParseState *pstate, Query *query, JumbleState *jstate)
 				ereport(ERROR,
 						(errcode(ERRCODE_CARDINALITY_VIOLATION),
 						 errmsg("UPDATE requires a WHERE clause")));
+			break;
 		default:
 			break;
 	}
@@ -64,7 +69,7 @@ _PG_init(void)
 							 "Enforce qualified updates",
 							 "Prevent DML without a WHERE clause",
 							 &safeupdate_enabled,
-							 1,
+							 true,
 							 PGC_SUSET,
 							 0,
 							 NULL,
